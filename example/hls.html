@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>HLS Demo</title>
+    <script src="https://cdn.jsdelivr.net/hls.js/latest/hls.js"></script>
+    <script  src="https://unpkg.com/@sigmaott/ssai-tracking-web-sdk@0.0.1/dist/ssai-tracking.umd.js"></script>
+    
+</head>
+
+<body>
+    <video preload="none" id="player"></video>
+    <script> 
+            //  import {SSAITracking} from './ssai-tracking.js'
+         
+            (async function () {
+               
+              
+                // get  
+                const domain = "http://123.31.18.25:2180"
+                const data = await fetch(`${domain}/manifest/manipulation/session/16480acd-b4a1-4629-abf0-586689c01c5f/origin04/scte35-av4s-clear/master.m3u8`).then(res=>res.json())
+                const manifestUrl = `${domain}${data.manifestUrl}`
+                const trackingUrl = `${domain}${data.trackingUrl}`
+                if (Hls.isSupported()) {
+                    var video = document.querySelector('#player');
+                    const ssaiPlugin = new window.ssaiTracking({ trackingUrl, video, intervalTracking: 1000 })
+                    var hls = new Hls();
+                
+                    hls.loadSource(manifestUrl);
+                    hls.attachMedia(video);
+                 
+
+                    hls.on(Hls.Events.MANIFEST_PARSED, function () {
+                        video.play();
+                        console.log(ssaiPlugin)
+                        ssaiPlugin.init()
+                    });
+                }
+
+            })();
+    </script>
+</body>
+
+</html>
