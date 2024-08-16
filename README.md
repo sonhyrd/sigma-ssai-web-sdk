@@ -1,7 +1,6 @@
 # sigma-ssai-web-sdk
 
 ```
-
 <head>
   <!-- STEP 1: Include the SDK -->
   <script src="https://dev-streaming.gviet.vn:8783/micro/cms/sdk-dai/sdk-dai.iife.js"></script>
