@@ -1,25 +1,6 @@
 # sigma-ssai-web-sdk
 
-1. Flow
-
-```mermaid
-sequenceDiagram
-    participant client
-    participant ssaiServer 
-   
-    client->>ssaiServer: 1.Init Session
-    ssaiServer-->>client: return manifestUrl, tracking Url 
-    client ->>client: 2. create instance SSAITracking 
-    alt when player play with manifestUrl 
-       client ->>client: 3. call function SSAITrackiking.init()
-    else when destroy player
-       client ->>client:  4.call function SSAITrackiking.destroy()
-    end
-    
-
 ```
-<!doctype html>
-
 <head>
   <!-- STEP 1: Include the SDK -->
   <script src="https://dev-streaming.gviet.vn:8783/micro/cms/sdk-dai/sdk-dai.iife.js"></script>
